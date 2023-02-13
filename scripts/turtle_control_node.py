@@ -12,7 +12,6 @@ pos_msg = Pose()
 
 def pose_callback(data):
     pos_msg.x = data.x
-    pos_msg.y = data.y
 
 
 def prop_callback(data):
@@ -28,7 +27,7 @@ if __name__ == "__main__":
 
     vel_pub = rospy.Publisher("/turtle1/cmd_vel", Twist, queue_size=10)
     loop_rate = rospy.Rate(10)
-    vel_cmd = Twist
+    vel_cmd = Twist()
 
     while not rospy.is_shutdown():
         vel_cmd.linear.x = prop_msg.kp * (prop_msg.xd - pos_msg.x)
